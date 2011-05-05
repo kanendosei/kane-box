@@ -1,0 +1,23 @@
+
+kane-box (Elite Ninja Skills)
+
+(c) 2010,2011 Kanen Flowers, kane-box, Inc.  (www.kane-box.com)
+   Big Thanks to the newLISP Fan Forums! (http://newlispfanclub.alh.net/forum)
+
+ABOUT
+  Go to www.kane-box.com for the latest information about kane-box
+
+LICENSE
+  kane-box is distributed under the BSD License. A human-readable version
+  of this license can be found at http://creativecommons.org/licenses/BSD 
+  or in the included LICENSE file with the kane-box distribution.
+
+  Parts of kane-box are released under the GPL.
+
+THOUGHTS
+   - Data on the computer is the asset, not the computer
+   - kane-box needs to spawn remote shells
+   - Fuzzing and inferring needs to be integrated a bit better (sadly)
+
+REQUIREMENTS
+	- Everything requires GCC or newLisp, depending on the code
