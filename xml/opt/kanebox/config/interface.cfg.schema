@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- define simple elements -->
+<xs:element name="type">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="External"/>
+<xs:enumeration value="Internal"/>
+<xs:enumeration value="Wireless"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<xs:element name="hosts">
+<xs:simpleType>
+<xs:restriction base="xs:integer">
+<xs:enumeration value="2"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="8"/>
+<xs:enumeration value="16"/>
+<xs:enumeration value="32"/>
+<xs:enumeration value="64"/>
+<xs:enumeration value="128"/>
+<xs:enumeration value="256"/>
+<xs:enumeration value="512"/>
+<xs:enumeration value="1024"/>
+<xs:enumeration value="2048"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<xs:element name="proto">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="UDP"/>
+<xs:enumeration value="TCP"/>
+<xs:enumeration value="ALL"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<!-- define attributes -->
+<xs:attribute name="name" type="xs:string"/>
+
+<!-- data types -->
+<xs:simpleType name="ipaddr">
+<xs:restriction base="xs:string">
+<xs:pattern value="((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="iface_name">
+<xs:restriction base="xs:string">
+<xs:minLength value="3"/>
+</xs:restriction>
+</xs:simpleType>
+
+<!-- schema -->
+<xs:element name="config">
+<xs:complexType>
+<xs:choice minOccurs="1" maxOccurs="10"> <!-- up to 10 interfaces -->
+
+<xs:element name="interface"> <xs:complexType>
+<xs:sequence>
+
+<xs:element ref="type" minOccurs="1" maxOccurs="1"/>
+<xs:element name="ip" type="ipaddr" minOccurs="1" maxOccurs="1"/>
+<xs:element name="device" type="xs:string" minOccurs="1" maxOccurs="1"/>
+<xs:element ref="hosts" minOccurs="0" maxOccurs="1"/>
+<xs:element name="gateway" type="xs:string" minOccurs="0" maxOccurs="1"/>
+<xs:element name="dhcp" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+
+<xs:element name="wireless_options" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+<xs:element name="ssid" type="xs:string" minOccurs="1" maxOccurs="1"/>
+<xs:element name="password" type="xs:string" minOccurs="1" maxOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="security" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="nat" type="xs:boolean"/>
+<xs:element name="scrub" type="xs:boolean"/>
+<xs:element name="exposure" type="xs:boolean"/>
+<xs:element name="virus" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="service" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ip" type="ipaddr"/>
+<xs:element name="port" type="xs:string"/>
+<xs:element ref="proto"/>
+</xs:sequence>
+<xs:attribute ref="name" use="required"/>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="dhcp_server" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="enable" type="xs:boolean"/>
+<xs:element name="start_ip" type="ipaddr"/>
+<xs:element name="end_ip" type="ipaddr"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="printer" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="shared" type="xs:boolean"/>
+</xs:sequence>
+<xs:attribute ref="name" use="required"/>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="storage" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="shared" type="xs:boolean"/>
+<xs:element name="windows" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+<xs:element name="mac" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+<xs:element name="linux" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+<xs:element name="login" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+</xs:sequence>
+<xs:attribute ref="name" use="required"/>
+</xs:complexType>
+</xs:element>
+
+</xs:sequence>
+
+<xs:attribute name="name" use="required" type="iface_name" />
+</xs:complexType> </xs:element>
+
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:schema>

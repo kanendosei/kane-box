@@ -1,0 +1,51 @@
+<interface name="Internet">
+	<type>External</type>
+	<device>vr0</device>
+	<ip>65.77.188.100</ip>
+	<hosts>2</hosts>
+	<gateway></gateway>
+	<dhcp>true</dhcp>
+	<security>
+		<nat>true</nat>
+		<scrub>true</scrub>
+		<exposure>true</exposure>
+		<virus>true</virus>
+	</security>
+	<service name="">
+		<ip></ip>
+		<port></port>
+		<proto></proto>
+	</service>
+</interface>
+<interface name="Network">
+	<type>Internal</type>
+	<device>vr1</device>
+	<ip>10.0.2.1</ip>
+	<dhcp>false</dhcp>
+	<hosts>256</hosts>
+	<security>
+		<scrub>true</scrub>
+	</security>
+	<dhcp_server>
+		<enable>true</enable>
+		<start_ip>10.0.2.10</start_ip>
+		<end_ip>10.0.2.250</end_ip>
+	</dhcp_server>
+</interface>
+<interface name="Wireless">
+	<type>Wireless</type>
+	<device>ath0</device>
+	<ip>10.0.1.1</ip>
+	<dhcp>false</dhcp>
+	<hosts>256</hosts>
+	<wireless_options>
+		<type>WPA</type>
+		<ssid>kanebox</ssid>
+		<password>openkane</password>
+	</wireless_options>
+	<dhcp_server>
+		<enable>true</enable>
+		<start_ip>10.0.1.10</start_ip>
+		<end_ip>10.0.1.250</end_ip>
+	</dhcp_server>
+</interface>

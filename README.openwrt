@@ -1,0 +1,15 @@
+
+Download OpenWRT
+
+Create package/newlisp
+Copy Makefile to package/newlisp
+
+** If you want newLisp 10.3.0 (the latest), modify
+   the Makefile and change the VERSION and CHECKSUM 
+
+Go to openwrt base directory (i.e. backfire)
+
+type:
+  make package/newlisp/compile V=99
+
+

@@ -1,0 +1,46 @@
+/* 
+-----------------------------------------------------------------------------
+ kane|box XML Configuration Utility
+ (c) 2010, kane|box, Inc.
+ 
+ Licensed under the Simplifed BSD License (see LICENSE for details)
+ 
+ FIRST: 
+        Read kane|box XML Configuration Utility Specification
+    (also at http://www.kane-box.com/docs/xml-spec.pdf )
+    
+ OVERVIEW:
+        This XML configuratin utility reads the interface.cfg file
+        (which is a Simple XML file) and writes all the necessary information
+        to create or modify network interfaces, to setup disk and printer
+        sharing and to create a powerful network firewall using pf
+        (the firewall in OpenBSD and many other *BSD systems)
+
+ LOCATIONs: 
+        <config>
+                Default is <curdir>/config
+        <etc>
+                Default is <curdir>/etc
+                
+        (edit this source to change defaults)
+
+ Usage:
+  kane-config -create     // create an XML template from interface.xml
+  kane-config -update     // update the system with new networks & firewall info
+  kane-config -test       // test the interface.cfg file for valid XML
+  kane-config -reset      // reset interface.cfg back to defaults
+ 
+ Workflow:
+ 1. Reads <config>/interface.cfg file
+ 2. Writes <etc>/interface.xxx files
+ 3. Writes <etc>/samba.conf
+ 4. Writes <etc>/pf.conf
+ 5. Writes other files, as necessary, from the interface.cfg file
+ 
+ 
+ Requires:
+ + XML template interface.xml (in <config>)
+ + OpenBSD, netBSD or FreeBSD (does not work on Linux)
+-----------------------------------------------------------------------------
+ */
+
